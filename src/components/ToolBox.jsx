@@ -4,18 +4,6 @@ import '../css/Blockly.css'
 
 class ToolBox extends React.Component {
   componentDidMount() {
-    // Add Custom Blocks
-    Blockly.Blocks['string_length'] = {
-      init: function() {
-        this.appendValueInput('VALUE')
-            .setCheck('String')
-            .appendField('length of');
-        this.setOutput(true, 'Number');
-        this.setColour(160);
-        this.setTooltip('Returns number of letters in the provided text.');
-        this.setHelpUrl('http://www.w3schools.com/jsref/jsref_length_string.asp');
-      }
-    };
     // =========== Logic Circuit Blocks ============
     // OR
     Blockly.Blocks['logic_circuit_or'] = {
@@ -86,6 +74,45 @@ class ToolBox extends React.Component {
       Blockly.JavaScript.ORDER_ATOMIC) || '0';
       return [inputA + ' ^ ' + inputB, Blockly.JavaScript.ORDER_BITWISE_XOR];
     };
+    // API Access
+    // http_template
+    Blockly.Blocks['http_template'] = {
+      init: function() {
+        this.setPreviousStatement(true); 
+        this.setNextStatement(true); 
+        let options = [['GET', 'GET'], ['POST', 'POST'], ['DELETE', 'DELETE']];
+        this.appendDummyInput('Http')
+            .appendField('Http')
+            .appendField(new Blockly.FieldDropdown(options), 'METHOD');
+        this.appendDummyInput('Url')
+            .appendField('https://twitter.api/')
+            .appendField(new Blockly.FieldTextInput('hoge'), 'PATH');
+        this.appendDummyInput('Params')
+            .appendField('Params')
+            .appendField(new Blockly.FieldTextInput('params'), 'PARAMS');
+        this.setColour(160);
+        this.setTooltip('Returns twitter api request.');
+        // this.setHelpUrl('http://www.w3schools.com/jsref/jsref_length_string.asp');
+      }
+    };
+    Blockly.JavaScript['http_template'] = function(block) {
+      // Search the text for a substring.
+      let method = block.getFieldValue('METHOD') || '';
+      let path = block.getFieldValue('PATH') || '';
+      let params = block.getFieldValue('PARAMS') || '';
+      return `
+const request = new XMLHttpRequest();
+request.open('${method}', 'https://twitter.api/${path}?params=${params}');
+request.addEventListener("load", (event) => {
+  window.alert(event.target.status);
+  window.alert(event.target.responseText);
+});
+request.addEventListener("error", () => {
+  window.alert("Network Error!");
+});
+request.send();
+`
+    };
 
   }
   render() {
@@ -121,8 +148,8 @@ class ToolBox extends React.Component {
             <block type="logic_circuit_and"></block>
             <block type="logic_circuit_xor"></block>
           </category>
-          <category name="Custom" colour="350">
-            <block type="string_length"></block>
+          <category name="API" colour="210">
+            <block type="http_template"></block>
           </category>
         </xml>
       </div>
