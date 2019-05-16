@@ -7,10 +7,28 @@ html, body, #app, #app>div {
 }
 
 .main {
+  height: 100%;
+}
+
+.runButton {
+  display: block;
+  margin: 0 auto;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 15px;
+  cursor: pointer;
+  background: linear-gradient(lime, lightgreen);
+  user-select:none;
+}
+.runButton:focus {
+  outline: 0;
+}
+
+.main-content {
   height: 80%;
   display: flex;
 }
 
-.main>div {
+.main-content>div {
   display: inline-block;
 }

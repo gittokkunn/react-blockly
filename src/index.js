@@ -4,6 +4,11 @@ import './css/index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faCode } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faCode)
+
 ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

@@ -1,4 +1,5 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Blockly from 'node-blockly/browser';
 import ToolBox from './ToolBox';
 import '../css/Blockly.css'
@@ -10,6 +11,7 @@ class Main extends React.Component {
     super(props);
     this.renderBlocklyArea = this.renderBlocklyArea.bind(this);
     this.resizeBlocklyArea = this.resizeBlocklyArea.bind(this);
+    this.runScript = this.runScript.bind(this);
   }
   componentDidMount() {
     this.renderBlocklyArea()
@@ -49,21 +51,44 @@ class Main extends React.Component {
   }
   updateCode(event) {
     var code = Blockly.JavaScript.workspaceToCode(workspace);
-    document.getElementById('codearea').innerHTML = code ? code: '';
+    document.getElementById('code').innerHTML = code ? code: '';
+  }
+  runScript() {
+    let code = Blockly.JavaScript.workspaceToCode(workspace);
+    try {
+      eval(code);
+    } catch (e) {
+      alert(e);
+    }  
   }
   render() {
     return (
       <div className="main">
-        <div id="blocklyArea">        
-          <div id="blocklyDiv">    
+        <button 
+          className="runButton" 
+          type="button" 
+          name="runButton" 
+          value="aaa"
+          onClick={this.runScript}
+        >
+          RUN
+        </button>
+        <div className="main-content">
+          <div id="blocklyArea">        
+            <div id="blocklyDiv">    
+            </div>
           </div>
+          <div className="code-wrapper">
+            <div className="code-wrapper-header">
+                <FontAwesomeIcon icon="code" />
+                code
+            </div>
+            <pre className="code-area">
+              <code id="code"></code>
+            </pre>
+          </div>
+          <ToolBox></ToolBox>
         </div>
-        <div className="code-wrapper">
-          <pre>
-            <code id="codearea"></code>
-          </pre>
-        </div>
-        <ToolBox></ToolBox>
       </div>
     )
   }

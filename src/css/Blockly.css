@@ -19,12 +19,23 @@
 .code-wrapper {
   width: 40%;
   margin-left: 20px;
-  padding: 10px;
-  border-radius: 20px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
   background: darkslateblue;
+  overflow: scroll;
+  opacity: 0.8;
 }
 
-#codearea {
+.code-wrapper-header {
+  width: 30%;
+  background: whitesmoke;
+}
+
+.code-area {
+  padding: 10px;
+}
+
+#code {
   font-size: 15px;
   font-weight: bold;
   color: cornsilk;
