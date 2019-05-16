@@ -2,7 +2,9 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Blockly from 'node-blockly/browser';
 import ToolBox from './ToolBox';
+import hljs from 'highlight.js'
 import '../css/Blockly.css'
+import '../css/default.css'
 
 let workspace = {}
 
@@ -51,7 +53,8 @@ class Main extends React.Component {
   }
   updateCode(event) {
     var code = Blockly.JavaScript.workspaceToCode(workspace);
-    document.getElementById('code').innerHTML = code ? code: '';
+    document.getElementById('code').innerHTML = 
+      hljs.highlightAuto(code, ['js']).value || '';
   }
   runScript() {
     let code = Blockly.JavaScript.workspaceToCode(workspace);
@@ -84,7 +87,7 @@ class Main extends React.Component {
                 code
             </div>
             <pre className="code-area">
-              <code id="code"></code>
+              <code id="code" class="javascript" ></code>
             </pre>
           </div>
           <ToolBox></ToolBox>
