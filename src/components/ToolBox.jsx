@@ -20,11 +20,11 @@ class ToolBox extends React.Component {
     // OR
     Blockly.Blocks['logic_circuit_or'] = {
       init: function() {
-        this.appendValueInput('VALUE')
+        this.appendValueInput('InputA')
             .setCheck('Number');
-        this.appendDummyInput('VALUE')
-        .appendField('OR');    
-        this.appendValueInput('VALUE')
+        this.appendDummyInput('Text')
+            .appendField('OR');    
+        this.appendValueInput('InputB')
             .setCheck('Number');
         this.setOutput(true, 'Number');
         this.setColour(160);
@@ -32,14 +32,22 @@ class ToolBox extends React.Component {
         // this.setHelpUrl('http://www.w3schools.com/jsref/jsref_length_string.asp');
       }
     };
+    Blockly.JavaScript['logic_circuit_or'] = function(block) {
+      // Search the text for a substring.
+      var inputA = Blockly.JavaScript.valueToCode(block, 'InputA',
+      Blockly.JavaScript.ORDER_ATOMIC) || '0';
+      var inputB = Blockly.JavaScript.valueToCode(block, 'InputB',
+      Blockly.JavaScript.ORDER_ATOMIC) || '0';
+      return [inputA + ' | ' + inputB, Blockly.JavaScript.ORDER_BITWISE_OR];
+    };
     // AND
     Blockly.Blocks['logic_circuit_and'] = {
       init: function() {
-        this.appendValueInput('VALUE')
+        this.appendValueInput('InputA')
             .setCheck('Number');
-        this.appendDummyInput('VALUE')
+        this.appendDummyInput('Text')
         .appendField('AND');    
-        this.appendValueInput('VALUE')
+        this.appendValueInput('InputB')
             .setCheck('Number');
         this.setOutput(true, 'Number');
         this.setColour(160);
@@ -47,14 +55,22 @@ class ToolBox extends React.Component {
         // this.setHelpUrl('http://www.w3schools.com/jsref/jsref_length_string.asp');
       }
     };
+    Blockly.JavaScript['logic_circuit_and'] = function(block) {
+      // Search the text for a substring.
+      var inputA = Blockly.JavaScript.valueToCode(block, 'InputA',
+      Blockly.JavaScript.ORDER_ATOMIC) || '0';
+      var inputB = Blockly.JavaScript.valueToCode(block, 'InputB',
+      Blockly.JavaScript.ORDER_ATOMIC) || '0';
+      return [inputA + ' & ' + inputB, Blockly.JavaScript.ORDER_BITWISE_AND];
+    };
     // XOR
     Blockly.Blocks['logic_circuit_xor'] = {
       init: function() {
-        this.appendValueInput('VALUE')
+        this.appendValueInput('InputA')
             .setCheck('Number');
-        this.appendDummyInput('VALUE')
+        this.appendDummyInput('Text')
         .appendField('XOR');    
-        this.appendValueInput('VALUE')
+        this.appendValueInput('InputB')
             .setCheck('Number');
         this.setOutput(true, 'Number');
         this.setColour(160);
@@ -62,6 +78,15 @@ class ToolBox extends React.Component {
         // this.setHelpUrl('http://www.w3schools.com/jsref/jsref_length_string.asp');
       }
     };
+    Blockly.JavaScript['logic_circuit_xor'] = function(block) {
+      // Search the text for a substring.
+      var inputA = Blockly.JavaScript.valueToCode(block, 'InputA',
+      Blockly.JavaScript.ORDER_ATOMIC) || '0';
+      var inputB = Blockly.JavaScript.valueToCode(block, 'InputB',
+      Blockly.JavaScript.ORDER_ATOMIC) || '0';
+      return [inputA + ' ^ ' + inputB, Blockly.JavaScript.ORDER_BITWISE_XOR];
+    };
+
   }
   render() {
     return (
