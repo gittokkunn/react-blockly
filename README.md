@@ -1,7 +1,7 @@
 
 
 ## ScreenShot
-![](https://github.com/gittokkunn/react-blockly/blob/master/screenshot/React-Blockly.gif)
+![](https://github.com/gittokkunn/react-blockly/blob/master/screenshot/React-Blockly.mp4.gif)
 ### `npm start`
 
 Runs the app in the development mode.<br>
