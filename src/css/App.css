@@ -1,0 +1,16 @@
+html, body, #app, #app>div {
+  height: 100%;
+}
+
+#root, .App {
+  height: 100%;
+}
+
+.main {
+  height: 90%;
+  display: flex;
+}
+
+.main>div {
+  display: inline-block;
+}

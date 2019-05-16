@@ -27,5 +27,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "node-blockly": "^1.0.36"
   }
 }
