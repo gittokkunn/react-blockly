@@ -1,17 +1,20 @@
+## ScreenShot
+![](https://github.com/gittokkunn/react-blockly/blob/master/screenshot/React-Blockly.mp4.gif)
 
-### Environment
+
+## Environment
 - Node.js: v8.11.3
 - npm:     v6.2.0
 - python:  v2.7.9
 
-### Build&SetUp
+## Build&SetUp
 ```
 pyenv install 2.7.9 // パッケージのインストールにpython 2.7.9を使う
 npm install
 ```
 
-### ScreenShot
-![](https://github.com/gittokkunn/react-blockly/blob/master/screenshot/React-Blockly.mp4.gif)
+## Commands
+
 ### `npm start`
 
 Runs the app in the development mode.<br>
